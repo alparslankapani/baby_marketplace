@@ -12,6 +12,8 @@ gem 'bootstrap-sass', '~> 3.1.1'
 # gem "paperclip", "~> 4.1"
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+gem "paperclip-dropbox", ">= 1.1.7"
+gem "figaro"
 
 group :production do 
 	gem 'pg'
