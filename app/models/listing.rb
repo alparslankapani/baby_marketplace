@@ -15,4 +15,6 @@ class Listing < ActiveRecord::Base
    validates_attachment :image, :presence => true,
   :size => { :in => 0..2.megabytes }
 
+  belongs_to :user
+
 end
