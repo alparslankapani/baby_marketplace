@@ -16,5 +16,6 @@ class Listing < ActiveRecord::Base
   :size => { :in => 0..2.megabytes }
 
   belongs_to :user
+  has_many :orders
 
 end
