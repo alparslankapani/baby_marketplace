@@ -20,4 +20,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  new_listing: New Listing 
+  sold_by: Sold by %{user}
+  jumbotron_title_html: <h1>Handcrafted items <br> from around the world.</h1>
+  jumbotron_subtitle_html: <h2>Discover one-of-a-kind items</h2>
+  navbar:
+    about: About
+    contact: Contact
+    language: Language
+    english: English
+    turkish: Turkish 
+    seller_account: Seller Account
+    manage_listings: Manage Listings
+    sales_history: Sales History
+    purchase_history: Purchase History
+    edit_profile: Edit Profile
+    sign_out: Sign Out
+    sign_up: Sign Up
+    sign_in: Sign In
