@@ -33,11 +33,11 @@
 
 <br>
 <% if (user_signed_in?) %>
-  <%= link_to t('new_listing'), class: "btn btn-primary", data: { no_turbolink: true } do %>
+  <%= link_to new_listing_path, class: "btn btn-primary", data: { no_turbolink: true } do %>
   <i class= "glyphicon glyphicon-plus"></i><%= t('new_listing') %>
   <% end %>
 <% else %>
-  <%= link_to t('new_listing'), class: "btn btn-primary", data: { no_turbolink: true } do %>
+  <%= link_to new_user_registration_path, class: "btn btn-primary", data: { no_turbolink: true } do %>
   <i class= "glyphicon glyphicon-plus"></i><%= t('new_listing') %>
   <% end %>
 <% end %>

@@ -56,3 +56,23 @@ body {
 		color: #EFEFEB;
 	}
 }
+
+.image { 
+float: left; 
+margin: 5px; 
+} 
+
+/* clearfix */
+  
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+.group {
+  zoom: 1;
+  margin-top: 7px;
+}

@@ -19,6 +19,10 @@ gem 'devise'
 gem 'stripe'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
+gem 'awesome_nested_set'
+gem 'acts_as_commentable_with_threading'
+gem "searchkick"
+gem 'unicorn'
 
 group :production do 
 	gem 'pg'
