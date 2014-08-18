@@ -6,13 +6,12 @@ Rails.application.routes.draw do
       resources :orders, only: [:create, :new]
     end
 
-    get 'pages/about'
-    get 'pages/contact'
+    match 'about' => 'pages#about', via: [:get]
+    get  'contact' => 'pages#contact'
     get 'seller' => "listings#seller"
     get 'sales' => "orders#sales"
     get 'purchases' => "orders#purchases"
-
-
+    
     root 'listings#index'
   end
 
