@@ -23,7 +23,7 @@ gem 'awesome_nested_set'
 gem 'acts_as_commentable_with_threading'
 gem "searchkick"
 gem 'unicorn'
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', '~> 3.1.5'
 
 group :production do 
 	gem 'pg'

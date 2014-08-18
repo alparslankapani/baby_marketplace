@@ -198,7 +198,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_commentable_with_threading
   awesome_nested_set
-  bcrypt-ruby
+  bcrypt-ruby (~> 3.1.5)
   bootstrap-sass (~> 3.1.1)
   coffee-rails (~> 4.0.0)
   devise
