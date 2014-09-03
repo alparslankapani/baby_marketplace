@@ -10,7 +10,9 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 12)
+    find_listing
+    @listings ||= Listing.all.order("created_at DESC")
+    @listings = @listings.paginate(:page => params[:page], :per_page => 12)
   end
 
   # GET /listings/1
@@ -80,6 +82,14 @@ class ListingsController < ApplicationController
       format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def find_listing
+     conditions = []
+     conditions << "listings.name LIKE '%#{params[:name]}%'" if params[:name].present?
+     conditions << "listings.name LIKE '%#{params[:description]}%'" if params[:description].present?
+     @listings = Listing.where(conditions.join(" AND ")).order("listings.name")
+
   end
 
   private
