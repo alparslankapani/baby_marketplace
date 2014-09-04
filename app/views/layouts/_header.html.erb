@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to "Etsydemo", root_path, class: "navbar-brand" %>
+    <%= link_to "Karlı Bebek", root_path, class: "navbar-brand" %>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,6 +18,8 @@
       <li><%= link_to t('navbar.giyim'), contact_path %></li>
       <li><%= link_to t('navbar.oyuncak'), contact_path %></li>
       <li><%= link_to t('navbar.aksesuar'), contact_path %></li>
+      <li><%= link_to t('navbar.diğer'), contact_path %></li>
+
 
 
       <!-- <li class="dropdown">
@@ -35,18 +37,18 @@
         <%= image_tag current_user.image.url(:medium) %>
           </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('navbar.seller_account') %> <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('navbar.satıcı_hesabım') %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><%= link_to t('navbar.manage_listings'), seller_path %></li>
-            <li><%= link_to t('navbar.sales_history'), sales_path %></li>
+            <li><%= link_to t('navbar.listeni_yönet'), seller_path %></li>
+            <li><%= link_to t('navbar.satışlarım'), sales_path %></li>
           </ul>
         </span>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><%= link_to t('navbar.purchase_history'), purchases_path %></li>
-            <li><%= link_to t('navbar.edit_profile'), edit_user_registration_path %></li>
-            <li><%= link_to t('navbar.sign_out'), destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to t('navbar.satın_aldıklarım'), purchases_path %></li>
+            <li><%= link_to t('navbar.profilini_düzenle'), edit_user_registration_path %></li>
+            <li><%= link_to t('navbar.oturumu_kapat'), destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
       <% else %>

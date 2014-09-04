@@ -87,8 +87,8 @@ class ListingsController < ApplicationController
   def find_listing
      conditions = []
      conditions << "listings.name LIKE '%#{params[:name]}%'" if params[:name].present?
-     conditions << "listings.name LIKE '%#{params[:description]}%'" if params[:description].present?
-     @listings = Listing.where(conditions.join(" AND ")).order("listings.name")
+     conditions << "listings.description LIKE '%#{params[:description]}%'" if params[:description].present?
+     @listings = Listing.where(conditions.join(" AND ")).order("listings.name" || "listings.description")
 
   end
 
