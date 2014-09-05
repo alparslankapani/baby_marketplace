@@ -17,24 +17,52 @@
       </div>
 
   <div class="form-group">
-    <%= f.label :name %><br>
+    <%= f.label :name, "Başlık" %><br>
     <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :description %><br>
+    <%= f.label :description, "Tanıtım" %><br>
     <%= f.text_area :description, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :price %><br>
+    <%= f.label :price, "Fiyat" %><br>
     <%= f.text_field :price, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :image %><br>
-    <%= f.file_field :image, :multiple =>:true, class: "form-control" %>
+    <%= f.label :image, "Resim" %><br>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :category, "Kategorini Seç" %><br>
+    <%= f.select :category, options_for_select([[" ", 1], [:araba, 2], [:mobilya, 3], [:giyim, 4], [:oyuncak, 5], [:aksesuar, 6], [:diger, 7]]) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :postal_code, "Posta Kodu" %><br>
+    <%= f.text_field :postal_code, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :location, "Lokasyon" %><br>
+    <%= f.text_field :location, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :product_condition, "Ürünün Durumu" %><br>
+    <%= f.select :product_condition, options_for_select([[" ", 1], [:yeni, 2], [:az_kullanilmis, 3], [:kullanilmis, 4]]) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :gender, "Cinsiyet" %><br>
+    <%= f.select :gender, options_for_select([[" ", 1], [:unisex, 2], [:erkek, 3], [:kiz, 4]]) %>
+  </div>
+   <div class="form-group">
+    <%= f.label :age_range, "Yaş Aralığı" %><br>
+    <%= f.select :age_range, options_for_select([[" ", 1], ["0-6 ay", 2], ["6-12 ay", 3], ["1-2 yaş", 4], ["2-3 yaş", 5], ["3-5 yaş", 6]]) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :delivery_information, "Gönderim Türü" %><br>
+    <%= f.select :delivery_information, options_for_select([[" ", 1], ["Sadece Elden Teslim", 2], ["Sadece Kargolanır", 3], ["Elden Teslim ya da Kargolanır", 4]]) %>
   </div>
   <br>
 
-  <% if current_user.recipient.blank? %>
+ <% if current_user.recipient.blank? %>
   <h1>Bank Account Information</h1>
   <div class= "form-group">
     <%= label_tag :country %>
