@@ -24,6 +24,7 @@ gem 'acts_as_commentable_with_threading'
 gem "searchkick"
 gem 'unicorn'
 gem 'bcrypt-ruby', '~> 3.1.5'
+gem 'debugger'
 
 group :production do 
 	gem 'pg'

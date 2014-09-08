@@ -2,6 +2,7 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:seller, :new, :create, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
+  before_action :prepare_categories
 
   def seller
     @listings = Listing.where(user: current_user).order("created_at DESC")
@@ -23,10 +24,12 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
+    @categories = Category.all 
   end
 
   # GET /listings/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /listings
@@ -98,9 +101,13 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])
     end
 
+     def prepare_categories
+      @categories = Category.all
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image, :category, :postal_code, :location, :product_condition, :gender, :age_range, :delivery_information)
+      params.require(:listing).permit(:name, :description, :price, :image, :category_id, :postal_code, :location, :product_condition, :gender, :age_range, :delivery_information)
     end
 
     def check_user

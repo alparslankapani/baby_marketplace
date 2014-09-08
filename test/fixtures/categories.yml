@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  araba: MyString
+  mobilya: MyString
+  giyim: MyString
+  oyuncak: MyString
+  aksesuar: MyString
+  diger: MyString
+
+two:
+  araba: MyString
+  mobilya: MyString
+  giyim: MyString
+  oyuncak: MyString
+  aksesuar: MyString
+  diger: MyString
