@@ -12,8 +12,14 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     find_listing
-    @listings ||= Listing.all.order("created_at DESC")
-    @listings = @listings.paginate(:page => params[:page], :per_page => 12)
+    if params[:category].blank?
+      @listings ||= Listing.all.order("created_at DESC")
+      @listings = @listings.paginate(:page => params[:page], :per_page => 12)
+    else
+      @category_id = Category.find_by(name: params[:category]).id
+      @listings = Listing.where(category_id: @category_id).order("created_at DESC")
+      @listings = @listings.paginate(:page => params[:page], :per_page => 12)
+    end
   end
 
   # GET /listings/1
@@ -24,12 +30,10 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
-    @categories = Category.all 
   end
-
+ 
   # GET /listings/1/edit
   def edit
-    @categories = Category.all
   end
 
   # POST /listings

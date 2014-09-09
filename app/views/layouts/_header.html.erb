@@ -15,18 +15,21 @@
     <ul class="nav navbar-nav">
       <li><%= link_to t('navbar.araba'), about_path %></li>
       <li><%= link_to t('navbar.mobilya'), contact_path %></li>
-      <li><%= link_to t('navbar.giyim'), contact_path %></li>
-      <li><%= link_to t('navbar.oyuncak'), contact_path %></li>
-      <li><%= link_to t('navbar.aksesuar'), contact_path %></li>
-      <li><%= link_to t('navbar.diğer'), contact_path %></li>
-
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('navbar.kategoriler') %> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+            <li><%= link_to category.name, listings_path(category: category.name) %></li>
+            <% end %>
+          </ul>
+        </li>
 
 
       <!-- <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('navbar.language') %> <b class="caret"></b></a>
+       <%# <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('navbar.language') %> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><%= link_to t('navbar.english'), root_path(locale: 'en') %></li>
-          <li><%= link_to t('navbar.turkish'), root_path(locale: 'tr') %></li>
+         <%# <li><%= link_to t('navbar.english'), root_path(locale: 'en') %></li>
+         <%# <li><%= link_to t('navbar.turkish'), root_path(locale: 'tr') %></li>
         </ul>
       </li> -->
     </ul>

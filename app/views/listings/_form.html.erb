@@ -34,9 +34,8 @@
   </div>
   <div class="form-group">
     <%= f.label :category_id, "Kategorini Seç" %><br>
-    <%# <%= f.collection_select(:listing, :category_id, @categories, :id, :name, {:prompt => false })  %>
-     <%= f.collection_select :category_id, Category.all, :id , :name %>
-    <%# <%= f.select :category_id, options_from_collection_for_select(Category.find(:all), :id, :category, params[:category_id].to_i) %>
+     <%= f.collection_select :category_id, Category.all, :id , :name, {prompt: "Lütfen Kategori Seçiniz"}, {class: "btn btn-default dropdown-toggle"}  %>
+ 
    
     
   </div>
