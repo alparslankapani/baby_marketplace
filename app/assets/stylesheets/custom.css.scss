@@ -49,9 +49,11 @@ body {
 	}
 }
 
-.jumbotron {
-	background-image: url('https://www.dropbox.com/s/aag5jgz9oviv0c5/jumbotron.jpg?dl=0');
-	h1, h2 {
+.banner img {
+	width: 100%;
+	max-height: 550px;
+	margin: 0 auto;
+	h1, h2, h3 {
 		font-family: guardian-egyptt, georgia, serif;
 		color: #EFEFEB;
 	}
