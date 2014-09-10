@@ -49,19 +49,19 @@
   </div>
   <div class="form-group">
     <%= f.label :product_condition, "Ürünün Durumu" %><br>
-    <%= f.select :product_condition, options_for_select([:yeni, :az_kullanilmis, :kullanilmis]), { :prompt => "Lütfen Seçiniz"} %>
+    <%= f.select :product_condition, options_for_select([:yeni, :az_kullanilmis, :kullanilmis]), { :prompt => "Lütfen Seçiniz"}, {class: "btn btn-default dropdown-toggle"}  %>
   </div>
   <div class="form-group">
     <%= f.label :gender, "Cinsiyet" %><br>
-    <%= f.select :gender, options_for_select([:unisex, :erkek, :kiz]), { :prompt => "Lütfen Seçiniz"} %>
+    <%= f.select :gender, options_for_select([:unisex, :erkek, :kiz]), { :prompt => "Lütfen Seçiniz"}, {class: "btn btn-default dropdown-toggle"} %>
   </div>
    <div class="form-group">
     <%= f.label :age_range, "Yaş Aralığı" %><br>
-    <%= f.select :age_range, options_for_select(["0-6 ay", "6-12 ay", "1-2 yaş", "2-3 yaş", "3-5 yaş"]), { :prompt => "Lütfen Seçiniz"} %>
+    <%= f.select :age_range, options_for_select(["0-6 ay", "6-12 ay", "1-2 yaş", "2-3 yaş", "3-5 yaş"]), { :prompt => "Lütfen Seçiniz"}, {class: "btn btn-default dropdown-toggle"} %>
   </div>
   <div class="form-group">
     <%= f.label :delivery_information, "Gönderim Türü" %><br>
-    <%= f.select :delivery_information, options_for_select(["Sadece Elden Teslim", "Sadece Kargolanır", "Elden Teslim ya da Kargolanır"]), { :prompt => "Lütfen Seçiniz"} %>
+    <%= f.select :delivery_information, options_for_select(["Sadece Elden Teslim", "Sadece Kargolanır", "Elden Teslim ya da Kargolanır"]), { :prompt => "Lütfen Seçiniz"}, {class: "btn btn-default dropdown-toggle"} %>
   </div>
   <br>
 

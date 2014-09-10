@@ -53,6 +53,8 @@ body {
 	width: 100%;
 	max-height: 550px;
 	margin: 0 auto;
+	padding: 3px;
+	border-radius: 5px;
 	h1, h2, h3 {
 		font-family: guardian-egyptt, georgia, serif;
 		color: #EFEFEB;
@@ -62,6 +64,7 @@ body {
 .image { 
 float: left; 
 margin: 5px; 
+border-radius: 10px;
 } 
 
 /* clearfix */
