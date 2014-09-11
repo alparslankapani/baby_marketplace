@@ -16,6 +16,7 @@ class Listing < ActiveRecord::Base
   :size => { :in => 0..2.megabytes }
 
   belongs_to :user
+  accepts_nested_attributes_for :user
   has_many :orders
   has_many :pictures, dependent: :destroy
   belongs_to :category

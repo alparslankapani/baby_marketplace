@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :bank_informations
+
   resources :categories
 
   scope "(:locale)", locale: /en|tr/ do

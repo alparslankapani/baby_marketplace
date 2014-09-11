@@ -29,7 +29,8 @@ class ListingsController < ApplicationController
 
   # GET /listings/new
   def new
-    @listing = Listing.new
+     @listing = current_user.listings.new
+     @listing.user.build_bank_information
   end
  
   # GET /listings/1/edit
@@ -39,8 +40,10 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @listing = Listing.new(listing_params)
-    @listing.user_id = current_user.id
+      @listing = Listing.new(listing_params)
+      @listing.user_id = current_user.id
+      @listing.save
+    
 
    # if current_user.recipient.blank?
    #   Stripe.api_key = ENV["STRIPE_API_KEY"]
@@ -111,7 +114,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image, :category_id, :postal_code, :location, :product_condition, :gender, :age_range, :delivery_information)
+      params.require(:listing).permit(:listing, :name, :description, :price, :image, :category_id, :postal_code, :location, :product_condition, :gender, :age_range, :delivery_information, :params, user_attributes: [ bank_information_attributes: [:bank_account, :bank_name, :id] ])
     end
 
     def check_user

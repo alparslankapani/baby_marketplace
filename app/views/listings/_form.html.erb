@@ -65,6 +65,28 @@
   </div>
   <br>
 
+  <%#<% if current_user.(bank_name && bank_account).blank? %>
+  <!--<h3>Banka Hesap Bilgiler</h3>
+    <div class="form-group">
+  <%#    <%= f.label :bank_name, "Banka Adı" %><br>
+  <%#    <%= f.text_field :bank_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+   <%#   <%= f.label :bank_account, "Banka Iban Numarası" %><br>
+   <%#   <%= f.text_field :bank_account, class: "form-control" %>
+    </div>
+    <%#<% end %> banka bilgileri -->
+
+    <%= f.fields_for :user do |u| %>
+       <%= u.fields_for :bank_information do |b| %>
+           <%= b.label :bank_name %>
+           <%= b.text_field :bank_name %>
+           <%= b.label :bank_account %>
+           <%= b.text_field :bank_account %>
+       <% end %>
+    <% end %>
+
  <!--<%# <% if current_user.recipient.blank? %>
   <h1>Bank Account Information</h1>
     <div class= "form-group">
@@ -83,7 +105,7 @@
     </div>
 <%#  <% end %> Stripe Bank account info--> 
 
-  <div class="form-group">
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
 <% end %>

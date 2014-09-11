@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:sign_up) << :image
     devise_parameter_sanitizer.for(:account_update) << :image
+    devise_parameter_sanitizer.for(:account_update) << :bank_name
+    devise_parameter_sanitizer.for(:account_update) << :bank_account
+
   end
 
   def set_locale
