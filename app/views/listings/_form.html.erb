@@ -52,8 +52,8 @@
     <%= f.select :product_condition, options_for_select([:yeni, :az_kullanilmis, :kullanilmis]), { :prompt => "Lütfen Seçiniz"}, {class: "btn btn-default dropdown-toggle"}  %>
   </div>
   <div class="form-group">
-    <%= f.label :gender, "Cinsiyet" %><br>
-    <%= f.select :gender, options_for_select([:unisex, :erkek, :kiz]), { :prompt => "Lütfen Seçiniz"}, {class: "btn btn-default dropdown-toggle"} %>
+    <%= f.label :gender_id, "Cinsiyet Seç" %><br>
+    <%= f.collection_select :gender_id, Gender.all, :id , :name, {prompt: "Lütfen Cinsiyet Seçiniz"}, {class: "btn btn-default dropdown-toggle"}  %>
   </div>
    <div class="form-group">
     <%= f.label :age_range, "Yaş Aralığı" %><br>

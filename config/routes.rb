@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :genders
+
   resources :bank_informations
 
   resources :categories

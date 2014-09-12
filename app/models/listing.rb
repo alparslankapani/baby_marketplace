@@ -20,5 +20,6 @@ class Listing < ActiveRecord::Base
   has_many :orders
   has_many :pictures, dependent: :destroy
   belongs_to :category
+  belongs_to :gender
 
 end

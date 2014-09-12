@@ -12,12 +12,13 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     find_listing
-    if params[:category].blank?
+    if (params[:category].blank?) && (params[:gender].blank?)
       @listings ||= Listing.all.order("created_at DESC")
       @listings = @listings.paginate(:page => params[:page], :per_page => 12)
     else
-      @category_id = Category.find_by(name: params[:category]).id
-      @listings = Listing.where(category_id: @category_id).order("created_at DESC")
+      @category_id = Category.find_by(name: params[:category]).id rescue ''
+      @gender_id = Gender.find_by(name: params[:gender]).id rescue ''
+      @listings = Listing.where(category_id: @category_id, gender_id: @gender_id)
       @listings = @listings.paginate(:page => params[:page], :per_page => 12)
     end
   end
@@ -114,7 +115,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:listing, :name, :description, :price, :image, :category_id, :postal_code, :location, :product_condition, :gender, :age_range, :delivery_information, :params, user_attributes: [ bank_information_attributes: [:bank_account, :bank_name, :id] ])
+      params.require(:listing).permit(:listing, :name, :description, :price, :image, :category_id, :postal_code, :location, :product_condition, :gender_id, :age_range, :delivery_information, :params, user_attributes: [ bank_information_attributes: [:bank_account, :bank_name, :id] ])
     end
 
     def check_user
