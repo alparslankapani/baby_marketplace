@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users/show'
+
   resources :genders
 
   resources :bank_informations
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|tr/ do
     devise_for :users
+    resources :users, :only => [:show]
     resources :listings do
       resources :orders, only: [:create, :new]
     end

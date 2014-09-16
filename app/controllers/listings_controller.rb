@@ -16,7 +16,6 @@ class ListingsController < ApplicationController
       @listings ||= Listing.all.order("created_at DESC")
       @listings = @listings.paginate(:page => params[:page], :per_page => 12)
     else
-
       @category_id = Category.find_by(name: params[:category]).id rescue ''
       @gender_id = Gender.find_by(name: params[:gender]).id rescue ''
       @listings = Listing.where(category_id: @category_id)

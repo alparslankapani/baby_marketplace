@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916071448) do
+ActiveRecord::Schema.define(version: 20140916094153) do
 
   create_table "bank_informations", force: true do |t|
     t.string   "bank_name"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20140916071448) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "bank_information_id"
+    t.integer  "listing_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
