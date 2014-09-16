@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911185307) do
+ActiveRecord::Schema.define(version: 20140916071448) do
 
   create_table "bank_informations", force: true do |t|
     t.string   "bank_name"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20140911185307) do
     t.integer  "postal_code"
     t.string   "location"
     t.string   "product_condition"
-    t.string   "gender"
     t.string   "age_range"
     t.string   "delivery_information"
     t.integer  "category_id"

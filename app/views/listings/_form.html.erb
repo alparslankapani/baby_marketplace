@@ -26,7 +26,7 @@
   </div>
   <div class="form-group">
     <%= f.label :price, "Fiyat" %><br>
-    <%= f.text_field :price, class: "form-control" %>
+    <%= f.text_field :price, class: "form-control", value:"444" %>
   </div>
   <div class="form-group">
     <%= f.label :image, "Resim" %><br>
@@ -34,10 +34,7 @@
   </div>
   <div class="form-group">
     <%= f.label :category_id, "Kategorini Seç" %><br>
-     <%= f.collection_select :category_id, Category.all, :id , :name, {prompt: "Lütfen Kategori Seçiniz"}, {class: "btn btn-default dropdown-toggle"}  %>
- 
-   
-    
+     <%= f.collection_select :category_id, Category.all, :id , :name, {prompt: "Lütfen Kategori Seçiniz"}, {class: "btn btn-default dropdown-toggle"}  %>  
   </div>
   <div class="form-group">
     <%= f.label :postal_code, "Posta Kodu" %><br>
@@ -83,7 +80,17 @@
            <%= b.label :bank_name %>
            <%= b.text_field :bank_name %>
            <%= b.label :bank_account %>
-           <%= b.text_field :bank_account %>
+           <%= b.text_field :bank_account %><br>
+           <em>Not 1:Üyelik ad ve soyadınız, vereceğiniz banka bilgisindeki ad soyad ile aynı olmalı. Farklı ise lütfen Profilim sayfasından düzeltiniz.</em><br>
+           <em>Elden teslim secilmis ise banka bilgilerini girmesine gerek yok.</em><br>
+           <em>Uyelik sozlesmesini, Mesafeli satis sozlesmesini checkbox latmamiz lazim.</em><br>
+           <em>Saticinin Alici adres bilgisine ulasmasi icin, Satislarim bolumundeki tabloya alicinin adresini ekle.</em><br>
+           <em>Uye guncellemede banka bilgileri textbox inida gir.</em><br>
+           <em>Saticiya urunu satildiktan sonra email atilmali</em><br>
+           <em>Saticinin email atildiktan sonra en gec 3 is gunu icinde kargo sirketi adi ve takip noyu sitede dump girmesi lazim. Alicinin da o noyu gormesi gerekli satin aldiklarim bolumunden.</em><br>
+           <em>SSS de ve urun listeleme sayfasinda kargo ucretinin alicinin odemesi gerektigini, eger kusur varsa iade ucretinin saticiya ait oldugunu yazmamiz gerekli. Ya da listelenecek urun yaratilirken comboboxta odeme tercihi girilmelidir. Sadece Kargolanir(Odeme Alıcıya aittir) gibi</em><br>
+           <em>Satici urunun kargo nosunu yazdiktan 4 is gunu sonra aliciya mail atilmali. Urun alindiysa satin aldiklarim tablosunda elime gecti butonuna basmali. Bastiktan sonra sadece bana teslim alindi maili atilip, ben de ucreti saticiya gonderirim.</em><br>
+           <em>Alici, elime gecti butonuna bastiktan sonra satici user'ina review birakma yetkisine sahip olabilir</em>
        <% end %>
     <% end %>
 

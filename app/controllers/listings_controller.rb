@@ -2,7 +2,6 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:seller, :new, :create, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
-  before_action :prepare_categories
 
   def seller
     @listings = Listing.where(user: current_user).order("created_at DESC")
@@ -12,13 +11,18 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     find_listing
+
     if (params[:category].blank?) && (params[:gender].blank?)
       @listings ||= Listing.all.order("created_at DESC")
       @listings = @listings.paginate(:page => params[:page], :per_page => 12)
     else
+
       @category_id = Category.find_by(name: params[:category]).id rescue ''
       @gender_id = Gender.find_by(name: params[:gender]).id rescue ''
-      @listings = Listing.where(category_id: @category_id, gender_id: @gender_id)
+      @listings = Listing.where(category_id: @category_id)
+      if @gender_id.present?
+        @listings = @listings.where(gender_id: @gender_id)
+      end
       @listings = @listings.paginate(:page => params[:page], :per_page => 12)
     end
   end
@@ -30,7 +34,7 @@ class ListingsController < ApplicationController
 
   # GET /listings/new
   def new
-     @listing = current_user.listings.new
+     @listing = current_user.listings.build
      @listing.user.build_bank_information
   end
  
@@ -41,9 +45,17 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
+      
       @listing = Listing.new(listing_params)
+      
       @listing.user_id = current_user.id
-      @listing.save
+
+      @listing.save 
+
+      @bank_information_data = bank_account_params
+      @bank_info = BankInformation.new(@bank_information_data['user_attributes']['bank_information_attributes'])
+      @bank_info.user_id =  current_user.id
+      @bank_info.save
     
 
    # if current_user.recipient.blank?
@@ -109,13 +121,13 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])
     end
 
-     def prepare_categories
-      @categories = Category.all
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:listing, :name, :description, :price, :image, :category_id, :postal_code, :location, :product_condition, :gender_id, :age_range, :delivery_information, :params, user_attributes: [ bank_information_attributes: [:bank_account, :bank_name, :id] ])
+      params.require(:listing).permit(:id, :name, :description, :price, :image, :category_id, :postal_code, :location, :product_condition, :gender_id, :age_range, :delivery_information)
+    end
+
+    def bank_account_params
+      params.require(:listing).permit(user_attributes: [ :id, bank_information_attributes: [:id, :bank_account, :bank_name] ])
     end
 
     def check_user
