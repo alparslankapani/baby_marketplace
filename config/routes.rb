@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :reviews
+  resources :reviews, except: [:show, :index]
 
   resources :age_ranges
 
