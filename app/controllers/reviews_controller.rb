@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /reviews
   # GET /reviews.json
@@ -25,6 +26,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
+    @review.user_id = current_user.id 
 
     respond_to do |format|
       if @review.save
@@ -69,6 +71,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:rating, :comment)
+      params.require(:review).permit(:rating, :comment, :user_id)
     end
 end
