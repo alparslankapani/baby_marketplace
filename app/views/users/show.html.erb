@@ -1,9 +1,36 @@
-<h1>Profil</h1>
 
-<div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="center">
+			<h1>Profile</h1>
+		</div>
+		<div class="thumbnail">
+			<%= image_tag @user.image.url %><br>
+			<div class="center">
+				<h4><em><%= "Üye:  #{@user.name}" %></em></h4>
+			</div>
+		</div>
+	</div>
 
-<%= image_tag @user.image.url(:medium) %><br>
-<%= @user.name %>
 
+	<div class="col-md-6">
+		<div class="center">
+		<h1>Sattılan Ürünler</h1>
+		</div>
+		<table class= "table table-striped table-bordered">
+			<tr>
+				<th class="center">Resim</th>
+				<th class="center">Ürün</th>
+				<th class="center">Fiyat</th>
+			</tr>
 
+			<% @listings.each do |listing| %>
+			<tr>
+				<td class="center"><%= image_tag listing.image.url(:thumb) %></td>
+				<td class="center"><%= listing.name %></td>
+				<td class="center"><%= number_to_currency(listing.price) %></td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
 </div>

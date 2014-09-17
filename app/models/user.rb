@@ -25,4 +25,5 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :bank_information
   has_many :sales, class_name: "Order", foreign_key: "seller_id"
   has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
+
 end
