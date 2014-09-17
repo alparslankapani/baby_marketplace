@@ -53,8 +53,8 @@
     <%= f.collection_select :gender_id, Gender.all, :id , :name, {prompt: "Lütfen Cinsiyet Seçiniz"}, {class: "btn btn-default dropdown-toggle"}  %>
   </div>
    <div class="form-group">
-    <%= f.label :age_range, "Yaş Aralığı" %><br>
-    <%= f.select :age_range, options_for_select(["0-6 ay", "6-12 ay", "1-2 yaş", "2-3 yaş", "3-5 yaş"]), { :prompt => "Lütfen Seçiniz"}, {class: "btn btn-default dropdown-toggle"} %>
+    <%= f.label :age_range_id, "Yaş Aralığı Seç" %><br>
+     <%= f.collection_select :age_range_id, AgeRange.all, :id , :age, {prompt: "Lütfen Yaş Aralığı Seçiniz"}, {class: "btn btn-default dropdown-toggle"}  %>  
   </div>
   <div class="form-group">
     <%= f.label :delivery_information, "Gönderim Türü" %><br>
@@ -75,14 +75,14 @@
     </div>
     <%#<% end %> banka bilgileri -->
 
-    <% if current_user.bank_information.blank? %>
+    <%#<% if current_user.bank_information.blank? %>
     <%= f.fields_for :user do |u| %>
        <%= u.fields_for :bank_information do |b| %>
            <%= b.label :bank_name %>
            <%= b.text_field :bank_name %>
            <%= b.label :bank_account %>
            <%= b.text_field :bank_account %><br>
-           <% end %>
+      <%#<% end %>
            <em>Not 1:Üyelik ad ve soyadınız, vereceğiniz banka bilgisindeki ad soyad ile aynı olmalı. Farklı ise lütfen Profilim sayfasından düzeltiniz.</em><br>
            <em>Elden teslim secilmis ise banka bilgilerini girmesine gerek yok.</em><br>
            <em>Uyelik sozlesmesini, Mesafeli satis sozlesmesini checkbox latmamiz lazim.</em><br>

@@ -21,5 +21,6 @@ class Listing < ActiveRecord::Base
   has_many :pictures, dependent: :destroy
   belongs_to :category
   belongs_to :gender
+  belongs_to :age_range
 
 end

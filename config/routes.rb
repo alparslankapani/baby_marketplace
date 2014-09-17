@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :reviews
+
+  resources :age_ranges
+
   get 'users/show'
 
   resources :genders

@@ -13,8 +13,7 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><%= link_to t('navbar.araba'), about_path %></li>
-      <li><%= link_to t('navbar.mobilya'), contact_path %></li>
+      <li><%= link_to t('navbar.hakkımızda'), about_path %></li>
        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('navbar.kategoriler') %> <b class=" caret"></b></a>
@@ -34,6 +33,14 @@
           </ul>
         </li> 
               
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('navbar.yaş_aralığına_göre') %> <b class=" caret"></b></a>
+          <ul class="dropdown-menu">
+              <% AgeRange.all.each do |agerange| %>
+              <li><%= link_to agerange.age, listings_path(agerange: agerange.age) %></li>
+               <% end %>
+          </ul>
+        </li>     
            
         
 

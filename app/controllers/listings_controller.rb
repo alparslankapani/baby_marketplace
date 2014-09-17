@@ -51,10 +51,10 @@ class ListingsController < ApplicationController
 
       @listing.save 
 
-      @bank_information_data = bank_account_params
-      @bank_info = BankInformation.new(@bank_information_data['user_attributes']['bank_information_attributes'])
-      @bank_info.user_id =  current_user.id
-      @bank_info.save
+        @bank_information_data = bank_account_params
+        @bank_info = BankInformation.new(@bank_information_data['user_attributes']['bank_information_attributes'])
+        @bank_info.user_id =  current_user.id
+        @bank_info.save
     
 
    # if current_user.recipient.blank?
