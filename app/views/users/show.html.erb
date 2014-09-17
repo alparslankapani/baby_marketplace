@@ -7,11 +7,19 @@
 		<div class="thumbnail">
 			<%= image_tag @user.image.url %><br>
 			<div class="center">
-				<h4><%= "Üye:  #{@user.name}" %></h4>
+				<strong><%= "Üye:  #{@user.name}" %></strong>
 			</div>
 		</div>
-		<h4><em>Üye Hakkındaki Yorumlar</em></h4>
-		<%= link_to "Yorum Ekle", new_user_review_path(@user), class: "btn btn-primary" %>
+		<h4><em><strong>Üye Hakkındaki Yorumlar</strong></em></h4><br>
+			<% if @reviews.blank? %>
+			  	 <h4>Henüz kullanıcı hakkında yorum yok.</h4>
+			<% else %>
+			 	  <% @reviews.each do |review| %>
+				  <p><%= review.rating %></p>
+				  <p><%= review.comment %></p>
+			<% end %>
+			   <% end %>
+			<%= link_to "Yorum Ekle", new_user_review_path(@user), class: "btn btn-primary" %>
 	</div>
 
 

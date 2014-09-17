@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
    end
 
    validates_attachment :image, :presence => true,
-   :size => { :in => 0..2.megabytes }
+   :size => { :in => 0..1.megabytes }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
