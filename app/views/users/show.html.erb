@@ -7,17 +7,27 @@
 		<div class="thumbnail">
 			<%= image_tag @user.image.url %><br>
 			<div class="center">
-				<strong><%= "Üye:  #{@user.name.camelcase}" %></strong>
+				<strong><p><%= "Üye:  #{@user.name.camelcase}" %></p></strong>
+				<div class="star-rating" data-score= <%= @avg_rating %> ></div>
+				<p><%= "#{@reviews.length } toplam yorum" %></p>
 			</div>
 		</div>
 		<h4><em><strong>Üye Hakkındaki Yorumlar</strong></em></h4><br>
 			<% if @reviews.blank? %>
 			  	 <h4>Henüz kullanıcı hakkında yorum yok.</h4>
 			<% else %>
-			 	  <% @reviews.each do |review| %>
-				  <div class="star-rating" data-score= <%= review.rating %> ></div>
-				  <p><%= review.comment %></p>
-			<% end %>
+				<table class="table">
+					<tbody>
+						<% @reviews.each do |review| %>
+						<tr>
+							<td>
+								 <div class="star-rating" data-score= <%= review.rating %> ></div>
+								  <p><%= h(review.comment).gsub(/\n/, '<br>').html_safe %></p>
+							</td>
+						</tr>
+					   <% end %>
+					</tbody>
+				</table>			
 			   <% end %>
 			<%= link_to "Yorum Ekle", new_user_review_path(@user), class: "btn btn-primary" %>
 	</div>
