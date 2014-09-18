@@ -2,14 +2,14 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="center">
-			<h1>Profile</h1>
+			<h1>Üye Profili</h1>
 		</div>
 		<div class="thumbnail">
 			<%= image_tag @user.image.url %><br>
 			<div class="center">
 				<strong><p><%= "Üye:  #{@user.name.camelcase}" %></p></strong>
 				<div class="star-rating" data-score= <%= @avg_rating %> ></div>
-				<p><%= "#{@reviews.length } toplam yorum" %></p>
+				<%= "#{@reviews.length } toplam yorum" %>
 			</div>
 		</div>
 		<h4><em><strong>Üye Hakkındaki Yorumlar</strong></em></h4><br>
@@ -17,9 +17,21 @@
 			  	 <h4>Henüz kullanıcı hakkında yorum yok.</h4>
 			<% else %>
 				<table class="table">
+					<thead>
+						<tr>
+							<th class="col-md-3"></th>
+							<th class="col-md-9"></th>
+						</tr>
+					</thead>	
 					<tbody>
 						<% @reviews.each do |review| %>
 						<tr>
+							 <td>
+								<h4>
+									<%= "#{review.user.name.capitalize}" %>
+								</h4>
+									<p><%= review.created_at.strftime("%d-%m-%y") %></p>
+							 </td>
 							<td>
 								 <div class="star-rating" data-score= <%= review.rating %> ></div>
 								  <p><%= h(review.comment).gsub(/\n/, '<br>').html_safe %></p>
