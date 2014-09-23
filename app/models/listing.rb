@@ -23,4 +23,8 @@ class Listing < ActiveRecord::Base
   belongs_to :gender
   belongs_to :age_range
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
 end

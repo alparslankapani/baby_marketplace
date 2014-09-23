@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adress:</strong>
+  <%= @adress_information.adress %>
+</p>
+
+<p>
+  <strong>Postal code:</strong>
+  <%= @adress_information.postal_code %>
+</p>
+
+<p>
+  <strong>Cell phone:</strong>
+  <%= @adress_information.cell_phone %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @adress_information.city %>
+</p>
+
+<%= link_to 'Edit', edit_adress_information_path(@adress_information) %> |
+<%= link_to 'Back', adress_informations_path %>

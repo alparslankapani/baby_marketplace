@@ -1,5 +1,6 @@
 class Review < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :user, class_name: "User"
+	belongs_to :author, class_name: "User"
 
 	validates :rating, :comment, presence: true
 	validates :rating, numericality: {

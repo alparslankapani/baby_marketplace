@@ -1,0 +1,31 @@
+<h1>Listing adress_informations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adress</th>
+      <th>Postal code</th>
+      <th>Cell phone</th>
+      <th>City</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adress_informations.each do |adress_information| %>
+      <tr>
+        <td><%= adress_information.adress %></td>
+        <td><%= adress_information.postal_code %></td>
+        <td><%= adress_information.cell_phone %></td>
+        <td><%= adress_information.city %></td>
+        <td><%= link_to 'Show', adress_information %></td>
+        <td><%= link_to 'Edit', edit_adress_information_path(adress_information) %></td>
+        <td><%= link_to 'Destroy', adress_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adress information', new_adress_information_path %>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :adress_informations
+
   resources :age_ranges
 
   get 'users/show'
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
   resources :categories
 
   scope "(:locale)", locale: /en|tr/ do
-    devise_for :users
+    devise_for :users, controllers: { registrations: "registrations" }
     resources :users, :only => [:show] do
       resources :reviews, except: [:show, :index]
     end

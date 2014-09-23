@@ -17,5 +17,5 @@ end
 private
 
 def user_params
-  params.require(:user).permit(:image, :listing_id, :bank_information_id, :user_id)
+  params.require(:user).permit(:image, :listing_id, :bank_information_id, :user_id, :adress_information_id)
 end

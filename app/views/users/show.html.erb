@@ -7,9 +7,9 @@
 		<div class="thumbnail">
 			<%= image_tag @user.image.url %><br>
 			<div class="center">
-				<strong><p><%= "Üye:  #{@user.name.camelcase}" %></p></strong>
+				<strong><p><%= "Üye:  #{@user.name.titleize}" %></p></strong>
 				<div class="star-rating" data-score= <%= @avg_rating %> ></div>
-				<%= "#{@reviews.length } toplam yorum" %>
+				<%= "#{@reviews.size } toplam yorum" %>
 			</div>
 		</div>
 		<h4><em><strong>Üye Hakkındaki Yorumlar</strong></em></h4><br>
@@ -28,14 +28,14 @@
 						<tr>
 							 <td>
 								<h4>
-									<%= "#{review.user.name.capitalize}" %>
+									<%= "#{review.author.name.split(' ').first}" %>
 								</h4>
 									<p><%= review.created_at.strftime("%d-%m-%y") %></p>
 							 </td>
 							<td>
 								 <div class="star-rating" data-score= <%= review.rating %> ></div>
 								  <p><%= h(review.comment).gsub(/\n/, '<br>').html_safe %></p>
-								  <% if (review.user == current_user) || (current_user.admin?) %>
+								  <% if (review.author == current_user) || (current_user.admin?) %>
 								  <%= link_to "Ekle", edit_user_review_path(@user, review) %>
 								  <%= link_to "Sil", user_review_path(@user, review), method: :delete %>
 								  <% end %>
@@ -51,7 +51,7 @@
 
 	<div class="col-md-6">
 		<div class="center">
-		<h1><%= "#{@user.name.camelcase } Listesi"  %></h1>
+		<h1><%= "#{@user.name.titleize } Listesi"  %></h1>
 		</div>
 		<table class= "table table-striped table-bordered">
 			<tr>

@@ -16,13 +16,13 @@ class ListingsController < ApplicationController
       @listings ||= Listing.all.order("created_at DESC")
       @listings = @listings.paginate(:page => params[:page], :per_page => 12)
     else
-      @category_id = Category.find_by(name: params[:category]).id rescue ''
+      @category_id = Category.find_by(name: params[:category]).try(:id)
      # @gender_id = Gender.find_by(name: params[:gender]).id rescue ''
       @listings = Listing.where(category_id: @category_id)
       #if @gender_id.present?
        # @listings = @listings.where(gender_id: @gender_id)
       #end
-      @listings = @listings.paginate(:page => params[:page], :per_page => 12)
+      @listings = @listings.paginate(:page => params.fetch(:page, 1), :per_page => 12)
     end
   end
 
@@ -35,6 +35,7 @@ class ListingsController < ApplicationController
   def new
      @listing = current_user.listings.build
      @listing.user.build_bank_information
+     #@listing.user.build_adress_information
   end
  
   # GET /listings/1/edit
@@ -55,6 +56,11 @@ class ListingsController < ApplicationController
         @bank_info = BankInformation.new(@bank_information_data['user_attributes']['bank_information_attributes'])
         @bank_info.user_id =  current_user.id
         @bank_info.save
+
+        #@adress_information_data = adress_field_params
+        #@adres_info = AdressInformation.new(@adress_information_data['user_attributes']['adress_information_attributes'])
+        #@adress_info.user_id = current_user.id
+        #@adress_info.save
     
 
    # if current_user.recipient.blank?
@@ -122,12 +128,16 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:id, :name, :description, :price, :image, :category_id, :postal_code, :location, :product_condition, :gender_id, :age_range, :delivery_information)
+      params.require(:listing).permit(:id, :name, :description, :price, :image, :category_id, :product_condition, :gender_id, :age_range, :delivery_information)
     end
 
     def bank_account_params
       params.require(:listing).permit(user_attributes: [ :id, bank_information_attributes: [:id, :bank_account, :bank_name] ])
     end
+
+    #def adress_field_params
+     # params.require(:listing).permit(user_attributes: [:id, adress_information_attributes: [:id, :adress, :postal_code, :city, :cell_phone] ])
+    #end
 
     def check_user
       if current_user != @listing.user

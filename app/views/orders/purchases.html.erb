@@ -8,6 +8,7 @@
 		<th class="center">Item</th>
 		<th class="center">Price</th>
 		<th class="center">Seller</th>
+		<th class="center">Contact Details</th>
 		<th class="center">Date Purchased</th>
 	</tr>
 
@@ -17,6 +18,16 @@
 		<td class="center"><%= order.listing.name %></td>
 		<td class="center"><%= number_to_currency(order.listing.price) %></td>
 		<td class="center"><%= order.seller.name %></td>
+		<td class="center">
+			<iframe
+			  width="100"
+			  height="120"
+			  frameborder="0" style="border:0"
+			  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCBZuNdgpM6bKs51cuncO3qGlRtz5NkOoE
+			    &q=<%= order.seller.adress.parameterize %>&zoom=17">
+			</iframe>
+
+			<%= order.seller.adress %><%= order.seller.city %><%= order.seller.postal_code rescue '' %></td>
 		<td class="center"><%= order.created_at.strftime("%-d %B, %Y") %></td>
 	</tr>
 	<% end %>

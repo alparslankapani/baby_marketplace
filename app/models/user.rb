@@ -18,12 +18,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
          validates :name, presence: true 
 
   has_many :listings, dependent: :destroy
   has_one :bank_information, dependent: :destroy
   has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :bank_information
+  has_many :adress_informations, dependent: :destroy
+  accepts_nested_attributes_for :adress_informations
   has_many :sales, class_name: "Order", foreign_key: "seller_id"
   has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
 

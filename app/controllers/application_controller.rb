@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :bank_name
     devise_parameter_sanitizer.for(:account_update) << :bank_account
     devise_parameter_sanitizer.for(:account_update) << :bank_information_id
+    devise_parameter_sanitizer.for(:account_update) << :adress_information_id
 
   end
 

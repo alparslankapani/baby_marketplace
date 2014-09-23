@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918115824) do
+ActiveRecord::Schema.define(version: 20140922102547) do
+
+  create_table "adress_informations", force: true do |t|
+    t.text     "adress"
+    t.string   "postal_code"
+    t.string   "cell_phone"
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "age_ranges", force: true do |t|
     t.string   "age"
@@ -51,11 +61,7 @@ ActiveRecord::Schema.define(version: 20140918115824) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
-    t.string   "category"
-    t.integer  "postal_code"
-    t.string   "location"
     t.string   "product_condition"
-    t.string   "age_range"
     t.string   "delivery_information"
     t.integer  "category_id"
     t.integer  "gender_id"
@@ -63,9 +69,6 @@ ActiveRecord::Schema.define(version: 20140918115824) do
   end
 
   create_table "orders", force: true do |t|
-    t.string   "adress"
-    t.string   "city"
-    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "listing_id"
@@ -89,6 +92,7 @@ ActiveRecord::Schema.define(version: 20140918115824) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "author_id"
   end
 
   create_table "users", force: true do |t|

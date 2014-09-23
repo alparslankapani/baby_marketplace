@@ -84,6 +84,16 @@ Rails.application.configure do
   # Required for devise gem. Remember to change localhost name to the actual application host url.
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
+  ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'webiesel.com',
+    :user_name            => 'alparslankapani@webiesel.com',
+    :password             => ENV["GMAIL_PASSWORD"],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+    }
+
   #Sets Paperclip images to upload AmazonS3
   config.paperclip_defaults = {
     :storage => :s3,
