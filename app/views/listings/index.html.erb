@@ -8,7 +8,9 @@
 
   <br><br>
   <%= form_tag "", class: "form-horizontal", method: :get do %>
+    
     <div class="form-group">
+      <div class="col-md-6">
       <%= label_tag :name, "Arama", class: "control-label col-md-6" %>
 
       <div class="col-md-4">
@@ -55,3 +57,7 @@
   <i class= "glyphicon glyphicon-plus"></i><%= t('new_listing') %>
   <% end %>
 <% end %>
+
+  <div class="center">
+    <div class="fb-like" data-href="https://karlibebek.com" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+  </div>
