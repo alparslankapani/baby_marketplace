@@ -5,8 +5,8 @@ class ListingsController < ApplicationController
 
   def seller
     @listings = Listing.where(user: current_user).order("created_at DESC")
-  end
-
+  end 
+ 
   # GET /listings
   # GET /listings.json
   def index
@@ -17,11 +17,12 @@ class ListingsController < ApplicationController
       @listings = @listings.paginate(:page => params[:page], :per_page => 12)
     else
       @category_id = Category.find_by(name: params[:category]).try(:id)
-     # @gender_id = Gender.find_by(name: params[:gender]).id rescue ''
+      
       @listings = Listing.where(category_id: @category_id)
-      #if @gender_id.present?
-       # @listings = @listings.where(gender_id: @gender_id)
-      #end
+      if params[:gender].present?
+        @gender_id = Gender.find_by(name: params[:gender]).id rescue ''
+        @listings = @listings.where(gender_id: @gender_id)
+      end
       @listings = @listings.paginate(:page => params.fetch(:page, 1), :per_page => 12)
     end
   end
@@ -34,8 +35,8 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
      @listing = current_user.listings.build
-     @listing.user.build_bank_information
-     #@listing.user.build_adress_information
+     @listing.user.build_bank_information unless current_user.has_bank_information?
+     @listing.user.build_adress_information unless current_user.has_adress?
   end
  
   # GET /listings/1/edit
@@ -52,15 +53,21 @@ class ListingsController < ApplicationController
 
       @listing.save 
 
+      unless bank_account_params.blank?
         @bank_information_data = bank_account_params
         @bank_info = BankInformation.new(@bank_information_data['user_attributes']['bank_information_attributes'])
         @bank_info.user_id =  current_user.id
         @bank_info.save
+      end
 
-        #@adress_information_data = adress_field_params
-        #@adres_info = AdressInformation.new(@adress_information_data['user_attributes']['adress_information_attributes'])
-        #@adress_info.user_id = current_user.id
-        #@adress_info.save
+      unless adress_field_params.blank?
+        @adress_information_data = adress_field_params
+        puts adress_field_params
+        #debugger
+        @adress_info = AdressInformation.new(@adress_information_data['user_attributes']['adress_information_attributes'])
+        @adress_info.user_id = current_user.id
+        @adress_info.save
+      end
     
 
    # if current_user.recipient.blank?
@@ -135,9 +142,9 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(user_attributes: [ :id, bank_information_attributes: [:id, :bank_account, :bank_name] ])
     end
 
-    #def adress_field_params
-     # params.require(:listing).permit(user_attributes: [:id, adress_information_attributes: [:id, :adress, :postal_code, :city, :cell_phone] ])
-    #end
+    def adress_field_params
+      params.require(:listing).permit(user_attributes: [:id, adress_information_attributes: [:id, :adress, :postal_code, :city, :cell_phone] ])
+    end
 
     def check_user
       if current_user != @listing.user

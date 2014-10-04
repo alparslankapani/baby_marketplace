@@ -14,6 +14,8 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @listing = Listing.find(params[:listing_id])
+    @order.user.build_bank_information unless current_user.has_bank_information?
+    @order.user.build_adress_information unless current_user.has_adress?
   end
 
 
@@ -27,6 +29,15 @@ class OrdersController < ApplicationController
     @order.listing_id = @listing.id 
     @order.buyer_id = current_user.id
     @order.seller_id = @seller.id
+
+      unless adress_field_params.blank?
+        @adress_information_data = adress_field_params
+        puts adress_field_params
+        #debugger
+        @adress_info = AdressInformation.new(@adress_information_data['user_attributes']['adress_information_attributes'])
+        @adress_info.user_id = current_user.id
+        @adress_info.save
+      end
 
     Stripe.api_key = ENV["STRIPE_API_KEY"]
     token = params[:stripeToken]
@@ -68,6 +79,10 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:adress, :city, :state)
+      params.require(:order).permit(:adress)
+    end
+
+    def adress_field_params
+      params.require(:order).permit(user_attributes: [:id, adress_information_attributes: [:id, :adress, :postal_code, :city, :cell_phone] ])
     end
 end

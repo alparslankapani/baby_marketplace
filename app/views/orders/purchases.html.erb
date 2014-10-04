@@ -24,10 +24,10 @@
 			  height="120"
 			  frameborder="0" style="border:0"
 			  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCBZuNdgpM6bKs51cuncO3qGlRtz5NkOoE
-			    &q=<%= order.seller.adress.parameterize %>&zoom=17">
+			    &q=<%= order.seller.adress_information.adress.parameterize %>&zoom=17">
 			</iframe>
 
-			<%= order.seller.adress %><%= order.seller.city %><%= order.seller.postal_code rescue '' %></td>
+		
 		<td class="center"><%= order.created_at.strftime("%-d %B, %Y") %></td>
 	</tr>
 	<% end %>

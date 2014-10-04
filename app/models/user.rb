@@ -20,14 +20,29 @@ class User < ActiveRecord::Base
 
 
          validates :name, presence: true 
+         validates :user_name, presence: true 
 
   has_many :listings, dependent: :destroy
   has_one :bank_information, dependent: :destroy
   has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :bank_information
-  has_many :adress_informations, dependent: :destroy
-  accepts_nested_attributes_for :adress_informations
+  has_one :adress_information, dependent: :destroy
+  accepts_nested_attributes_for :adress_information
   has_many :sales, class_name: "Order", foreign_key: "seller_id"
   has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
+
+
+  def self.can_review? (buyer, seller)
+    Order.where(buyer_id: buyer.id, seller_id: seller.id).any?
+  end
+
+  def has_adress?
+    AdressInformation.where(user_id: id).any?
+  end
+
+  def has_bank_information?
+    BankInformation.where(user_id: id).any?
+  end
+
 
 end
